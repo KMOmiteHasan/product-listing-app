@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+    font-family: "Audiowide", cursive !important;
+}
+
+.container {
+    background: #0b3638;
+    border: 0px solid #987a4d;
+    /* #062124 */
+    width: 100%;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.main-head {
+    width: 100%;
+}
+
+.main-head h1 {
+    width: 80%;
+    margin: 5rem auto;
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: normal;
+    color: #ffffff;
+}
+
+.product-add-block {
+    width: 100%;
+    padding: 1rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.product-add-btn {
+    display: block;
+    font-size: 2.5rem;
+    font-family: "Audiowide", cursive !important;
+    background: #836235;
+    border: 1px solid #836235;
+    color: #ffffff;
+    padding: 2rem 4rem;
+    outline: 0;
+    border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+.product-add-btn:hover {
+    background: #684d27;
+    border: 1px solid #684d27;
+}
+
+.product-add-form {
+    width: 60%;
+    background: #062124;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    height: auto;
+    padding: 3rem 4rem;
+    border: 3px solid #987a4d;
+}
+
+.product-add-form .form-block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.product-add-form .form-block label {
+    width: 30%;
+    color: #ffffff;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.product-add-form .form-block input[type="text"],
+.product-add-form .form-block input[type="file"],
+.product-add-form .form-block input[type="number"] {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1.6rem 2.4rem;
+    width: 70%;
+    transition: background 0.5s;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 10rem;
+    -webkit-border-radius: 10rem;
+    -moz-border-radius: 10rem;
+    -ms-border-radius: 10rem;
+    -o-border-radius: 10rem;
+    color: #333333;
+}
+
+.product-add-form .form-block input[type="text"]::placeholder,
+.product-add-form .form-block input[type="file"]::placeholder,
+.product-add-form .form-block textarea::placeholder,
+.product-add-form .form-block input[type="number"]::placeholder {
+    color: #000000;
+    opacity: 1;
+}
+
+.product-add-form .form-block input[type="text"]:-ms-input-placeholder,
+.product-add-form .form-block input[type="file"]:-ms-input-placeholder,
+.product-add-form .form-block textarea:-ms-input-placeholder,
+.product-add-form .form-block input[type="number"]:-ms-input-placeholder {
+    color: #000000;
+}
+
+.product-add-form .form-block input[type="text"]::-ms-input-placeholder,
+.product-add-form .form-block input[type="file"]::-ms-input-placeholder,
+.product-add-form .form-block textarea::-ms-input-placeholder,
+.product-add-form .form-block input[type="number"]::-ms-input-placeholder {
+    color: #000000;
+}
+
+.product-add-form .form-block textarea {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1.6rem 2.4rem;
+    width: 70%;
+    transition: background 0.5s;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    color: #333333;
+}
+
+.product-add-form .form-block input:focus,
+.product-add-form .form-block textarea:focus {
+    background: #ffffff;
+}
+
+.form-submit {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.9rem;
+    background: #987a4d;
+    padding: 1.5rem 4rem;
+    border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+    outline: 0;
+    border: 1px solid #987a4d;
+    color: #ffffff;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+.form-submit:hover {
+    background: #57442a;
+    border: 1px solid #57442a;
+}
+
+.subHead {
+    width: 80%;
+    margin: 5rem auto;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: normal;
+    color: #ffffff;
+}
+
+#convertPDF {
+    font-size: 2rem;
+    background: #836235;
+    border: 1px solid #836235;
+    padding: 2rem 3rem;
+    outline: 0;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    display: block;
+    margin: 1rem auto 5rem;
+    cursor: pointer;
+}
+
+.product-listings {
+    width: 100%;
+    padding: 3rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.product-lists {
+    width: 50%;
+    padding: 2rem 3rem;
+    background: #062124;
+    border: 3px solid #987a4d;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+
+.product-image {
+    width: 35%;
+    padding: 1rem 0.5rem;
+    height: 100%;
+}
+
+.product-lists-text {
+    width: 65%;
+    padding: 1rem;
+}
+
+.product-lists-text p {
+    width: 100%;
+    padding: 1rem;
+    color: #ffffff;
+    font-size: 1.7rem;
+    margin: 0.5rem 0;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .container {
+        visibility: visible;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .main-head {
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    .product-add-block {
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    .subHead {
+        visibility: visible;
+        text-align: center;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .product-listings * {
+        visibility: visible;
+        /* text-align: center; */
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    #convertPDF {
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    .product-lists {
+        visibility: visible;
+        width: 100%;
+    }
+
+    .product-image {
+        width: 35%;
+        visibility: visible;
+    }
+
+    .product-lists-text {
+        width: 65%;
+        visibility: visible;
+    }
+
+    .product-lists-text p {
+        visibility: visible;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width:1100px) {
+    html {
+        font-size: 9px;
+    }
+
+    .product-add-form {
+        width: 70%;
+    }
+
+    .product-lists {
+        width: 65%;
+    }
+}
+
+@media (max-width:990px) {
+    html {
+        font-size: 8px;
+    }
+
+    .product-add-form {
+        width: 80%;
+    }
+
+    .product-lists {
+        width: 75%;
+    }
+}
+
+@media (max-width:768px) {
+    html {
+        font-size: 7px;
+    }
+
+    .product-add-form {
+        width: 90%;
+    }
+
+    .product-lists {
+        width: 85%;
+    }
+}
+
+@media (max-width:520px) {
+    html {
+        font-size: 6px;
+    }
+
+    .product-add-form {
+        width: 95%;
+    }
+
+    .product-lists {
+        width: 90%;
+    }
+}
+
+@media (max-width:460px) {
+    html {
+        font-size: 5px;
+    }
+
+    .product-add-form {
+        width: 100%;
+    }
+
+    .product-lists {
+        width: 95%;
+    }
+}
