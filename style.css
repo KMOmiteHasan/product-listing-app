@@ -398,20 +398,6 @@ html {
 }
 
 .product-lists {
-    width: 50%;
-    padding: 2rem 3rem;
-    background: #062124;
-    border: 3px solid #987a4d;
-    border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4rem;
     position: relative; /* Add this line */
 }
 
@@ -439,17 +425,17 @@ html {
 }
 
 .counter {
-    width: 150px;
+    width: 15rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .counter input {
-    width: 50px;
+    width: 5rem;
     border: 0;
-    line-height: 30px;
-    font-size: 20px;
+    line-height: 3rem;
+    font-size: 2rem;
     text-align: center;
     background: #0052cc;
     color: #fff;
@@ -459,8 +445,8 @@ html {
 
 .counter span {
     display: block;
-    font-size: 25px;
-    padding: 0 10px;
+    font-size: 2.5rem;
+    padding: 0 1rem;
     cursor: pointer;
     color: #0052cc;
     user-select: none;
