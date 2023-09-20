@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
 *,
@@ -159,6 +160,7 @@ html {
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
     color: #333333;
+    resize: none;
 }
 
 .product-add-form .form-block input:focus,
@@ -218,6 +220,18 @@ html {
     display: block;
     margin: 1rem auto 5rem;
     cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+#convertPDF:hover {
+    background: #584222;
+    border: 1px solid #584222;
 }
 
 .product-listings {
@@ -263,16 +277,103 @@ html {
     color: #ffffff;
     font-size: 1.7rem;
     margin: 0.5rem 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.product-lists-text p b {
+    color: #d1ad6b;
+    font-size: 1.8rem;
+    font-family: "Audiowide", cursive !important;
+}
+
+
+
+.product-lists {
+    position: relative;
+}
+
+.product-lists .edit-button {
+    background: #836235;
+    color: #ffffff;
+    font-size: 1.9rem;
+    border: none;
+    padding: 1.5rem 3rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.product-lists .edit-button:hover {
+    background: #684d27;
+}
+
+.counter {
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter input {
+    width: 5rem;
+    border: 0;
+    line-height: 3rem;
+    font-size: 2rem;
+    text-align: center;
+    background: #976b34;
+    color: #fff;
+    appearance: none;
+    outline: 0;
+    user-select: none;
+}
+
+.counter span {
+    display: block;
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    cursor: pointer;
+    color: #966b39;
+    user-select: none;
+}
+
+input[type="number"]::webkit-inner-spin-button {
+    display: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 @media print {
     body * {
         visibility: hidden;
+        color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    body {
+        visibility: visible;
+        color-adjust: exact !important;
         -webkit-print-color-adjust: exact !important;
     }
 
     .container {
         visibility: visible;
+        color-adjust: exact !important;
         -webkit-print-color-adjust: exact !important;
     }
 
@@ -289,23 +390,40 @@ html {
     .subHead {
         visibility: visible;
         text-align: center;
+        margin-top: 5rem !important;
+        margin-bottom: 3rem !important;
+        color-adjust: exact !important;
         -webkit-print-color-adjust: exact !important;
     }
 
     .product-listings * {
         visibility: visible;
-        /* text-align: center; */
+        color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .product-listings {
+        visibility: visible;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 5rem !important;
+        color-adjust: exact !important;
         -webkit-print-color-adjust: exact !important;
     }
 
     #convertPDF {
         visibility: hidden !important;
         display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .product-lists {
         visibility: visible;
         width: 100%;
+        margin: 6rem 0 !important;
     }
 
     .product-image {
@@ -395,59 +513,4 @@ html {
     .product-lists {
         width: 95%;
     }
-}
-
-.product-lists {
-    position: relative; /* Add this line */
-}
-
-.product-lists .edit-button {
-    background: #836235; /* Same background color as the "Add" button */
-    color: #ffffff;
-    font-size: 1.9rem;
-    border: none;
-    padding: 1.5rem 3rem;
-    border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
-    cursor: pointer;
-    position: absolute; /* Position the button absolutely */
-    right: 1rem; /* Adjust the distance from the right side */
-    top: 50%; /* Center the button vertically */
-    transform: translateY(-50%); /* Center the button vertically */
-    display: none;
-}
-
-.product-lists .edit-button:hover {
-    background: #684d27;
-}
-
-.counter {
-    width: 15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.counter input {
-    width: 5rem;
-    border: 0;
-    line-height: 3rem;
-    font-size: 2rem;
-    text-align: center;
-    background: #0052cc;
-    color: #fff;
-    appearance: none;
-    outline: 0;
-}
-
-.counter span {
-    display: block;
-    font-size: 2.5rem;
-    padding: 0 1rem;
-    cursor: pointer;
-    color: #0052cc;
-    user-select: none;
 }

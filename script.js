@@ -8,6 +8,14 @@ const formSubmit = document.querySelector(".form-submit")
 const productListings = document.querySelector(".product-listings")
 const convertPDF = document.querySelector("#convertPDF")
 
+productVolume.oninput = (event) => positiveValue(event, productVolume);
+
+function positiveValue(event, input) {
+    var value = parseInt(input.value, 10);
+    value = value < 0 ? 0 : value;
+    input.value = value;
+}
+
 // Function to create an "Edit" button
 function createEditButton() {
     const editButton = document.createElement('button');
@@ -27,8 +35,10 @@ function createCounter() {
     decreaseButton.onclick = (event) => decreaseCount(event, decreaseButton.nextElementSibling);
 
     const countInput = document.createElement('input');
-    countInput.type = 'text';
+    countInput.classList.add("counter-input")
+    countInput.type = 'number';
     countInput.value = '1';
+    countInput.oninput = (event) => updateCount(event, countInput);
 
     const increaseButton = document.createElement('span');
     increaseButton.classList.add('up');
@@ -43,13 +53,24 @@ function createCounter() {
 }
 
 formSubmit.addEventListener("click", () => {
-    if (!productName.value || !productVolume.value || !productImg.files[0] || !productComment.value) {
-        alert("Please fill in all the fields and upload an image.")
+    if (!productVolume.value) {
+        alert("Please fill in the volume field.")
+        return;
+    }
+    if (!productImg.files[0]) {
+        alert("Please upload an image.")
         return;
     }
 
+
     const productList = document.createElement('li');
     productList.classList.add('product-lists');
+
+    const editButton = createEditButton();
+    productList.appendChild(editButton);
+
+    const counterDiv = createCounter();
+    productList.appendChild(counterDiv);
 
     const productImage = document.createElement('img');
     productImage.classList.add('product-image');
@@ -64,26 +85,27 @@ formSubmit.addEventListener("click", () => {
 
     const productVol = document.createElement('p');
     productVol.classList.add('product-volume');
-    productVol.innerHTML = `<b>Product Volume: </b> ${productVolume.value}CBM3`;
+    productVol.innerHTML = `<b>Product Volume: </b> <span>${productVolume.value}</span>CBM3`;
+
+    const productTotVol = document.createElement('p');
+    productTotVol.classList.add('product-total-volume');
+    productTotVol.innerHTML = `<b>Total Volume: </b> <span>${Number(productVolume.value)}</span>CBM3`;
 
     const commentText = document.createElement('p');
     commentText.classList.add('product-comment');
     commentText.innerHTML = `<b>Comment: </b> ${productComment.value}`;
 
-    const editButton = createEditButton();
-    productList.appendChild(editButton);
-
-    const counterDiv = createCounter();
-    productList.appendChild(counterDiv);
 
     productListText.appendChild(productText);
     productListText.appendChild(productVol);
+    productListText.appendChild(productTotVol);
     productListText.appendChild(commentText);
 
     productList.appendChild(productImage);
     productList.appendChild(productListText);
 
     productListings.appendChild(productList);
+
 
     productName.value = '';
     productVolume.value = '';
@@ -107,6 +129,8 @@ function increaseCount(event, input) {
     value = isNaN(value) ? 0 : value;
     value++;
     input.value = value;
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
 }
 
 function decreaseCount(event, input) {
@@ -116,6 +140,16 @@ function decreaseCount(event, input) {
         value--;
         input.value = value;
     }
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
+}
+
+function updateCount(event, input) {
+    var value = parseInt(input.value, 10);
+    value = value < 0 ? 0 : value;
+    input.value = value;
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
 }
 
 function handleEditProduct(productListItem) {
