@@ -7,6 +7,8 @@ const productComment = document.querySelector("#productComment")
 const formSubmit = document.querySelector(".form-submit")
 const productListings = document.querySelector(".product-listings")
 const convertPDF = document.querySelector("#convertPDF")
+const totalVolBlock = document.querySelector(".totalCountHead")
+const totalVol = document.querySelector(".totalCountHead h1 span")
 
 // productVolume.oninput = (event) => positiveValue(event, productVolume);
 
@@ -44,7 +46,7 @@ function setInputFilter2(textBox, inputFilter, errMsg) {
 }
 
 setInputFilter2(document.getElementById("productVolume"), function (value) {
-    return /^\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*$/.test(value);
+    return /^\d*\,?\d*\.?\d*$/.test(value);
 }, "Only digits and ',' are allowed");
 
 // Function to create an "Edit" button
@@ -142,6 +144,7 @@ formSubmit.addEventListener("click", () => {
     productVolume.value = '';
     productImg.value = '';
     productComment.value = '';
+    totalVolUpdate()
 })
 
 convertPDF.addEventListener("click", () => {
@@ -160,8 +163,24 @@ function increaseCount(event, input) {
     value = isNaN(value) ? 0 : value;
     value++;
     input.value = value;
-    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.replace(",", "")
-    input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.includes(".")) {
+        if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 1) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10) / 10).toFixed(1)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 2) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 100) / 100).toFixed(2)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 3) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 1000) / 1000).toFixed(3)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 4) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10000) / 10000).toFixed(4)}`;
+        } else {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10000) / 10000).toFixed(4)}`;
+        }
+    }
+    else {
+        input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${parseInt(input.value, 10) * Number(valueChange)}`;
+    }
+    totalVolUpdate()
 }
 
 function decreaseCount(event, input) {
@@ -171,16 +190,48 @@ function decreaseCount(event, input) {
         value--;
         input.value = value;
     }
-    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.replace(",", "")
-    input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.includes(".")) {
+        if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 1) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10) / 10).toFixed(1)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 2) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 100) / 100).toFixed(2)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 3) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 1000) / 1000).toFixed(3)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 4) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10000) / 10000).toFixed(4)}`;
+        } else {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10000) / 10000).toFixed(4)}`;
+        }
+    }
+    else {
+        input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${parseInt(input.value, 10) * Number(valueChange)}`;
+    }
+    totalVolUpdate()
 }
 
 function updateCount(event, input) {
     var value = parseInt(input.value, 10);
     value = value < 0 ? 0 : value;
     input.value = value;
-    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.replace(",", "")
-    input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.includes(".")) {
+        if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 1) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10) / 10).toFixed(1)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 2) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 100) / 100).toFixed(2)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 3) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 1000) / 1000).toFixed(3)}`;
+        } else if (input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.split(".")[1].length === 4) {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10000) / 10000).toFixed(4)}`;
+        } else {
+            input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${(Math.round((parseInt(input.value, 10) * Number(valueChange)) * 10000) / 10000).toFixed(4)}`;
+        }
+    }
+    else {
+        input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${parseInt(input.value, 10) * Number(valueChange)}`;
+    }
+    totalVolUpdate()
 }
 
 function handleEditProduct(productListItem) {
@@ -220,4 +271,17 @@ function handleEditProduct(productListItem) {
 
     productListItem.innerHTML = '';
     productListItem.appendChild(editForm);
+}
+
+function totalVolUpdate() {
+    if (productListings.children.length > 0) {
+        let total = 0
+        for (let i = 0; i < productListings.children.length; i++) {
+            total += Number(productListings.children[i].lastElementChild.children[2].children[1].innerHTML)
+        }
+        totalVol.innerHTML = total + "CBM3"
+        totalVolBlock.style.display = "block"
+    } else {
+        totalVolBlock.style.display = "none"
+    }
 }
