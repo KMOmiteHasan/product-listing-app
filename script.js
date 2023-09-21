@@ -8,13 +8,44 @@ const formSubmit = document.querySelector(".form-submit")
 const productListings = document.querySelector(".product-listings")
 const convertPDF = document.querySelector("#convertPDF")
 
-productVolume.oninput = (event) => positiveValue(event, productVolume);
+// productVolume.oninput = (event) => positiveValue(event, productVolume);
 
-function positiveValue(event, input) {
-    var value = parseInt(input.value, 10);
-    value = value < 0 ? 0 : value;
-    input.value = value;
+// function positiveValue(event, input) {
+//     var value = parseInt(input.value, 10);
+//     value = value < 0 ? 0 : value;
+//     input.value = value;
+// }
+
+function setInputFilter2(textBox, inputFilter, errMsg) {
+    ["input", "keydown", "keyup", "select", "contextmenu"].forEach(function (event) {
+        textBox.addEventListener(event, function (e) {
+            if (inputFilter(this.value)) {
+                if (["keydown", "mousedown", "focusout"].indexOf(e.type) >= 0) {
+                    this.classList.remove("input-error");
+                    this.setCustomValidity("");
+                }
+
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            }
+            else if (this.hasOwnProperty("oldValue")) {
+                this.classList.add("input-error");
+                this.setCustomValidity(errMsg);
+                this.reportValidity();
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            }
+            else {
+                this.value = "";
+            }
+        });
+    });
 }
+
+setInputFilter2(document.getElementById("productVolume"), function (value) {
+    return /^\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*\,?\d*$/.test(value);
+}, "Only digits and ',' are allowed");
 
 // Function to create an "Edit" button
 function createEditButton() {
@@ -89,7 +120,7 @@ formSubmit.addEventListener("click", () => {
 
     const productTotVol = document.createElement('p');
     productTotVol.classList.add('product-total-volume');
-    productTotVol.innerHTML = `<b>Total Volume: </b> <span>${Number(productVolume.value)}</span>CBM3`;
+    productTotVol.innerHTML = `<b>Total Volume: </b> <span>${productVolume.value}</span>CBM3`;
 
     const commentText = document.createElement('p');
     commentText.classList.add('product-comment');
@@ -129,7 +160,7 @@ function increaseCount(event, input) {
     value = isNaN(value) ? 0 : value;
     value++;
     input.value = value;
-    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.replace(",", "")
     input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
 }
 
@@ -140,7 +171,7 @@ function decreaseCount(event, input) {
         value--;
         input.value = value;
     }
-    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.replace(",", "")
     input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
 }
 
@@ -148,7 +179,7 @@ function updateCount(event, input) {
     var value = parseInt(input.value, 10);
     value = value < 0 ? 0 : value;
     input.value = value;
-    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML
+    let valueChange = input.parentElement.nextElementSibling.nextElementSibling.children[1].children[1].innerHTML.replace(",", "")
     input.parentElement.nextElementSibling.nextElementSibling.children[2].children[1].innerHTML = `${Number(input.value) * Number(valueChange)}`;
 }
 
